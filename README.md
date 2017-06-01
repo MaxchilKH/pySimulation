@@ -1,2 +1,2 @@
 # pySimulation
-Just a shitty univeristy assignment
+Just a shitty university assignment
