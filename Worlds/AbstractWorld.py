@@ -7,7 +7,7 @@ class AbstractWorld(metaclass=ABCMeta):
         self.width = w
         self.height = h
         self.organisms = list()
-        self.map = dict()
+        self.mapa = dict()
 
     def draw_gui(self):
         pass
@@ -18,5 +18,11 @@ class AbstractWorld(metaclass=ABCMeta):
     def kill_organism(self, org):
         pass
 
-    def add_organism(self):
+    def add_organism(self, org):
         pass
+
+    def get_neighbours(self, org):
+        return [tile for tile in org.tile.get_neighbours() if tile in self.mapa.keys()]
+
+    def get_free_neigbours(self, org):
+        return [tile for tile in self.get_neighbours(org) if tile.organism is not None]
