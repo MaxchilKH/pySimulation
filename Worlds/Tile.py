@@ -9,7 +9,7 @@ class Tile(metaclass=ABCMeta):
         self.shape = list()
 
     @abstractmethod
-    def get_neighbours(self):
+    def get_neighbours(self) -> set:
         pass
 
     @abstractmethod

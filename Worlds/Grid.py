@@ -7,7 +7,7 @@ class Grid(Tile):
         super().__init__(pos)
         self.organism = org
 
-    def get_neighbours(self):
+    def get_neighbours(self) -> set:
         x, y = self.position
         return {(x+1, y), (x, y+1), (x-1, y), (x, y-1)}
 

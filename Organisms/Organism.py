@@ -1,11 +1,16 @@
 from abc import abstractmethod, ABCMeta
 from pySimulation.Worlds.AbstractWorld import AbstractWorld
 
+
 class Organism(metaclass=ABCMeta):
 
     def __init__(self, tile, world):
         self.tile = tile
         self.world = world
+        self.isDead = False
+
+    def kill(self):
+        self.isDead = True
 
     @property
     def strength(self):
@@ -52,3 +57,4 @@ class Organism(metaclass=ABCMeta):
             self.world.kill_organism(self)
         else:
             self.world.kill_orgasim(attacker)
+            attacker.kill()
