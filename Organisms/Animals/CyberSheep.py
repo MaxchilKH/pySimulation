@@ -14,7 +14,7 @@ class CyberSheep(Animal):
     def action(self):
         hogweeds = self.world.get_hogweed()
 
-        #hogweed = min([])
+        hogweed = min([])
 
         super().action()
 
