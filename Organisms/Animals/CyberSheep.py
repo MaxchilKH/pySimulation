@@ -1,5 +1,5 @@
-from pySimulation.Organisms.Animals.Animal import Animal
-
+from Organisms.Animals.Animal import Animal
+import math
 
 class CyberSheep(Animal):
 
@@ -13,9 +13,29 @@ class CyberSheep(Animal):
 
     def action(self):
         hogweeds = self.world.get_hogweed()
+        if not hogweeds:
+            super().action()
+            return
 
-        hogweed = min([])
+        hogweedspos = [org.tile.position for org in hogweeds]
 
-        super().action()
+
+
+        x, y = self.tile.position
+
+        hx, hy = min([(math.sqrt((x - hx)**2 + (y - hy)**2), (hx, hy)) for hx, hy in hogweedspos])[1]
+
+        if hx > x:
+            self.move(self.world.map[(x+1, y)])
+        elif hx < x:
+            self.move(self.world.map[(x-1, y)])
+        elif hy > y:
+            self.move(self.world.map[(x, y + 1)])
+        elif hy < y:
+            self.move(self.world.map[(x, y - 1)])
+
+
+
+
 
 

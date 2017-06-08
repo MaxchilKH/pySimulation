@@ -1,5 +1,5 @@
-from pySimulation.Worlds.AbstractWorld import AbstractWorld
-from pySimulation.Worlds.Grid import Grid
+from Worlds.AbstractWorld import AbstractWorld
+from Worlds.Grid import Grid
 
 
 class GridWorld(AbstractWorld):

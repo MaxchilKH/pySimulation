@@ -1,19 +1,19 @@
 #!/usr/bin/env python
 
-from pySimulation.Worlds.GridWorld import GridWorld
-from pySimulation.Worlds.HexWorld import HexWorld
-from pySimulation.Organisms.Animals.Sheep import Sheep
-from pySimulation.Organisms.Animals.Wolf import Wolf
-from pySimulation.Organisms.Animals.Antilope import Antilope
-from pySimulation.Organisms.Animals.CyberSheep import CyberSheep
-from pySimulation.Organisms.Animals.Turtle import Turtle
-from pySimulation.Organisms.Animals.Fox import Fox
-from pySimulation.Organisms.Plants.Atropa import Atropa
-from pySimulation.Organisms.Plants.Sonhaus import Sonhaus
-from pySimulation.Organisms.Plants.Grass import Grass
-from pySimulation.Organisms.Plants.Guarana import Guarana
-from pySimulation.Organisms.Plants.Hogweed import Hogweed
-from pySimulation.Organisms.Human import Human
+from Worlds.GridWorld import GridWorld
+from Worlds.HexWorld import HexWorld
+from Organisms.Animals.Sheep import Sheep
+from Organisms.Animals.Wolf import Wolf
+from Organisms.Animals.Antilope import Antilope
+from Organisms.Animals.CyberSheep import CyberSheep
+from Organisms.Animals.Turtle import Turtle
+from Organisms.Animals.Fox import Fox
+from Organisms.Plants.Atropa import Atropa
+from Organisms.Plants.Sonhaus import Sonhaus
+from Organisms.Plants.Grass import Grass
+from Organisms.Plants.Guarana import Guarana
+from Organisms.Plants.Hogweed import Hogweed
+from Organisms.Human import Human
 import tkinter as tk
 from tkinter import filedialog
 import pickle
@@ -113,7 +113,32 @@ class Simulation(tk.Frame):
         print(dict)
 
     def new_game(self):
-        pass
+        dialog = tk.Toplevel()
+        width = tk.Entry(dialog)
+        height = tk.Entry(dialog)
+
+        width.pack()
+        height.pack()
+
+        var = tk.StringVar(self)
+
+        listbox = tk.OptionMenu(dialog, var, "Hex", "Grid")
+        listbox.pack()
+
+        button = tk.Button(dialog, command=lambda *args: dialog.destroy()).pack()
+
+        #self.master.wait_window(dialog)
+
+        width = width.get()
+        height = height.get()
+        kind = var.get()
+
+        if kind == "Hex":
+            self.world = HexWorld(width, height, self)
+        else:
+            self.world = GridWorld(width, height, self)
+
+        self.create_widgets()
 
     def create_widgets(self):
         self.create_canvas()

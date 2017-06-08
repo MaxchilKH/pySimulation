@@ -1,5 +1,5 @@
-from pySimulation.Worlds.AbstractWorld import AbstractWorld
-from pySimulation.Worlds.Hex import Hex
+from Worlds.AbstractWorld import AbstractWorld
+from Worlds.Hex import Hex
 
 
 class HexWorld(AbstractWorld):

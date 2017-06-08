@@ -1,6 +1,6 @@
-from pySimulation.Organisms.Plants.Plant import Plant
-from pySimulation.Organisms.Animals.CyberSheep import CyberSheep
-from pySimulation.Organisms.Animals.Animal import Animal
+from Organisms.Plants.Plant import Plant
+from Organisms.Animals.CyberSheep import CyberSheep
+from Organisms.Animals.Animal import Animal
 
 
 class Hogweed(Plant):
@@ -20,7 +20,7 @@ class Hogweed(Plant):
 
     def collision(self, attacker):
         self.world.kill_organism(self)
-        if not isinstance(self, CyberSheep):
+        if not isinstance(attacker, CyberSheep):
             self.world.kill_organism(attacker)
 
     def draw(self):

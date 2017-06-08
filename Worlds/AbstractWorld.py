@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod
-from pySimulation.Organisms.Human import Human
-from pySimulation.Organisms.Plants.Hogweed import Hogweed
+from Organisms.Human import Human
+from Organisms.Plants.Hogweed import Hogweed
 import tkinter as tk
 
 
@@ -44,7 +44,7 @@ class AbstractWorld(tk.Canvas, metaclass=ABCMeta):
     def setcommentator(self, funcp):
         self.commenter = funcp
 
-    def get_hogeweed(self):
+    def get_hogweed(self):
         return [org for org in self.organisms if isinstance(org, Hogweed)]
 
     def add_organism(self, org):

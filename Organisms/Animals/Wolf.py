@@ -1,4 +1,4 @@
-from pySimulation.Organisms.Animals.Animal import Animal
+from Organisms.Animals.Animal import Animal
 
 
 class Wolf(Animal):

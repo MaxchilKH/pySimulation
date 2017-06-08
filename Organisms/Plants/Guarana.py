@@ -1,4 +1,4 @@
-from pySimulation.Organisms.Plants.Plant import Plant
+from Organisms.Plants.Plant import Plant
 
 
 class Guarana(Plant):

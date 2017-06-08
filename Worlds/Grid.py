@@ -1,4 +1,4 @@
-from pySimulation.Worlds.Tile import Tile
+from Worlds.Tile import Tile
 
 
 class Grid(Tile):

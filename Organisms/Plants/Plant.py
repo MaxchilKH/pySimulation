@@ -1,5 +1,5 @@
 from abc import ABCMeta
-from pySimulation.Organisms.Organism import Organism
+from Organisms.Organism import Organism
 import random
 
 
