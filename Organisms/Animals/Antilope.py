@@ -26,12 +26,14 @@ class Antilope(Animal):
         self.move(random.choice(moves))
 
     def collision(self, attacker):
-        if random.randint(0, 100) >= 50:
+        if random.randint(0, 100) >= 50 or isinstance(attacker, Antilope):
             super().collision(attacker)
         else:
             moves = self.world.get_free_neighbours(self.tile)
 
             if not moves:
                 return
-            
+
+            self.world.comment("Antylopa ran from {}\n".format(type(attacker).__name__))
+
             self.move(random.choice(moves))

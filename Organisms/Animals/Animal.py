@@ -43,6 +43,7 @@ class Animal(Organism, metaclass=ABCMeta):
                 return
 
             self.world.add_organism(self.__class__(random.choice(tile), self.world))
+            return
 
         super().collision(attacker)
 

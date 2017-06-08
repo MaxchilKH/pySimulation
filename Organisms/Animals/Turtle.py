@@ -23,6 +23,7 @@ class Turtle(Animal):
     def collision(self, attacker):
         if attacker.strength < 5 and not isinstance(attacker, Turtle):
             attacker.canMove = False
+            self.world.comment("Turtle reflected {}\n".format(type(attacker).__name__))
             return
 
         super().collision(attacker)

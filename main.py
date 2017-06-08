@@ -139,7 +139,19 @@ class Simulation(tk.Frame):
         self.world.draw_map()
 
     def create_log(self):
-        pass
+        def comment(string):
+            self.log.insert(tk.END, string)
+
+        self.logFrame = tk.Frame(self)
+        self.logFrame.grid(row=1, columnspan=2, sticky=tk.W+tk.E+tk.S+tk.N)
+        self.log = tk.Text(self.logFrame)
+        self.scrollLog = tk.Scrollbar(self.logFrame, orient=tk.VERTICAL, command=self.log.yview)
+        self.scrollLog.grid(column=1, row=0, sticky=tk.N+tk.S)
+
+        self.log['yscrollcommand'] = self.scrollLog.set
+
+        self.log.grid(column=0, row=0)
+        self.world.setcommentator(comment)
 
     def create_buttons(self):
         self.buttonsFrame = tk.Frame(self, padx=20, bg="red")

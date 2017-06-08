@@ -55,6 +55,8 @@ class Organism(metaclass=ABCMeta):
         if attacker.strength >= self.strength:
             self.world.kill_organism(self)
             self.kill()
+            self.world.comment("{} killed {}\n".format(type(attacker).__name__, type(self).__name__))
         else:
             self.world.kill_organism(attacker)
             attacker.kill()
+            self.world.comment("{} killed {}\n".format(type(self).__name__, type(attacker).__name__))

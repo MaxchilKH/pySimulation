@@ -10,3 +10,12 @@ class CyberSheep(Animal):
         super().__init__(tile, world)
         self.strength = 4
         self.initiative = 4
+
+    def action(self):
+        hogweeds = self.world.get_hogweed()
+
+        #hogweed = min([])
+
+        super().action()
+
+

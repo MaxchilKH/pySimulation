@@ -1,5 +1,6 @@
 from abc import ABCMeta, abstractmethod
 from pySimulation.Organisms.Human import Human
+from pySimulation.Organisms.Plants.Hogweed import Hogweed
 import tkinter as tk
 
 
@@ -12,6 +13,7 @@ class AbstractWorld(tk.Canvas, metaclass=ABCMeta):
         self.organisms = list()
         self.map = dict()
         self.human = None
+        self.commenter = None
 
     def draw_map(self):
         for key, val in self.map.items():
@@ -39,6 +41,12 @@ class AbstractWorld(tk.Canvas, metaclass=ABCMeta):
         org.tile.organism = None
         self.organisms.remove(org)
 
+    def setcommentator(self, funcp):
+        self.commenter = funcp
+
+    def get_hogeweed(self):
+        return [org for org in self.organisms if isinstance(org, Hogweed)]
+
     def add_organism(self, org):
         self.organisms.append(org)
         org.tile.organism = org
@@ -48,3 +56,6 @@ class AbstractWorld(tk.Canvas, metaclass=ABCMeta):
 
     def get_free_neighbours(self, t):
         return [tile for tile in self.get_neighbours(t) if tile.organism is None]
+
+    def comment(self, string):
+        self.commenter(string)
