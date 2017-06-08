@@ -3,17 +3,14 @@ from abc import ABCMeta, abstractmethod
 
 class Tile(metaclass=ABCMeta):
 
-    def __init__(self, pos):
+    def __init__(self, pos, world):
         self.position = pos
+        self.world = world
+        self.polygon = None
         self.organism = None
-        self.shape = list()
 
     @abstractmethod
     def get_neighbours(self) -> set:
-        pass
-
-    @abstractmethod
-    def check_click(self):
         pass
 
     @property
@@ -22,7 +19,13 @@ class Tile(metaclass=ABCMeta):
 
     @organism.setter
     def organism(self, org):
-            self.__organism = org
+        if org is not None:
+            color = org.draw()
+        else:
+            color = "#adf6ff"
+
+        self.world.itemconfig(self.polygon, fill=color)
+        self.__organism = org
 
     @property
     def position(self):

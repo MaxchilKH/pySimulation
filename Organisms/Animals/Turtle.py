@@ -5,15 +5,15 @@ import random
 class Turtle(Animal):
 
     def draw(self):
-        pass
+        return "#91ad2e"
 
-    def __init__(self, tile):
-        super().__init__(tile)
+    def __init__(self, tile, world):
+        super().__init__(tile, world)
         self.strength = 2
         self.initiative = 1
 
     def action(self):
-        moves = self.world.get_neighbours(self)
+        moves = self.world.get_neighbours(self.tile)
 
         if not moves:
             return

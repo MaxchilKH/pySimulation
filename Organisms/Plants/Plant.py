@@ -5,16 +5,15 @@ import random
 
 class Plant(Organism, metaclass=ABCMeta):
 
-    def __init__(self, tile):
-        super().__init__(tile)
+    def __init__(self, tile, world):
+        super().__init__(tile, world)
         self.initiative = 0
 
     def collision(self, attacker):
         super().collision(attacker)
-        self.world.kill_organism(self)
 
     def action(self):
-        if random.randint(0, 100) >= 25:
+        if random.randint(0, 100) >= 10:
             return
 
         moves = self.world.get_free_neighbours(self.tile)

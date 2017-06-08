@@ -5,16 +5,16 @@ import random
 class Fox(Animal):
 
     def draw(self):
-        pass
+        return "#ff5000"
 
-    def __init__(self, tile):
-        super().__init__(tile)
+    def __init__(self, tile, world):
+        super().__init__(tile, world)
         self.strength = 3
         self.initiative = 7
 
     def action(self):
-        moves = self.world.get_neighbours(self)
-        moves = {tile for tile in moves if not (tile.organism is None or tile.organism.strength <= self.strength)}
+        moves = self.world.get_neighbours(self.tile)
+        moves = [tile for tile in moves if (tile.organism is None or tile.organism.strength <= self.strength)]
 
         if not moves:
             return

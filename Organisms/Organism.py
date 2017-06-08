@@ -1,5 +1,4 @@
 from abc import abstractmethod, ABCMeta
-from pySimulation.Worlds.AbstractWorld import AbstractWorld
 
 
 class Organism(metaclass=ABCMeta):
@@ -55,6 +54,7 @@ class Organism(metaclass=ABCMeta):
     def collision(self, attacker):
         if attacker.strength >= self.strength:
             self.world.kill_organism(self)
+            self.kill()
         else:
-            self.world.kill_orgasim(attacker)
+            self.world.kill_organism(attacker)
             attacker.kill()

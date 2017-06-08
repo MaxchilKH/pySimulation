@@ -5,13 +5,12 @@ import random
 
 class Animal(Organism, metaclass=ABCMeta):
 
-    def __init__(self, tile):
-        super().__init__(tile)
+    def __init__(self, tile, world):
+        super().__init__(tile, world)
         self.canMove = True
 
     def action(self):
-        self.canMove = True
-        moves = self.world.get_neighbours(self)
+        moves = self.world.get_neighbours(self.tile)
         tile = random.choice(moves)
 
         self.move(tile)
@@ -30,4 +29,20 @@ class Animal(Organism, metaclass=ABCMeta):
 
         if not self.isDead and self.canMove:
             self.tile.organism = None
+            self.tile = tile
             tile.organism = self
+
+        self.canMove = True
+
+    def collision(self, attacker):
+        if type(self) is type(attacker):
+            tile = self.world.get_free_neighbours(self.tile)
+            attacker.canMove = False
+
+            if not tile:
+                return
+
+            self.world.add_organism(self.__class__(random.choice(tile), self.world))
+
+        super().collision(attacker)
+

@@ -4,21 +4,25 @@ import random
 
 class Antilope(Animal):
 
-    def draw(self):
-        pass
-
-    def __init__(self, tile):
-        super().__init__(tile)
+    def __init__(self, tile, world):
+        super().__init__(tile, world)
         self.strength = 4
         self.initiative = 4
 
+    def draw(self):
+        return "#875409"
+
     def action(self):
-        moves = self.world.get_neighbours(self.tile)
+        moves = set()
+        moves.update(self.world.get_neighbours(self.tile))
         moves.update([tile for a in moves for tile in self.world.get_neighbours(a)])
+
+        moves.remove(self.tile)
 
         if not moves:
             return
 
+        moves = [tile for tile in moves]
         self.move(random.choice(moves))
 
     def collision(self, attacker):
